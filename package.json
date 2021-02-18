@@ -1,0 +1,15 @@
+{
+  "name": "udemycourse1",
+  "version": "1.0.0",
+  "description": "playground for the course",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mckinn",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.11.17",
+    "underscore": "^1.12.0"
+  }
+}
