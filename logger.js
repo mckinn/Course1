@@ -1,13 +1,7 @@
 
-console.log(__filename);
-console.log(__dirname);
+function log (req, res, next){
+    console.log('Logging...');
+    next();    // call the next event.
+};
 
-var url='http//mylogger.io/log';
-
-function log(message) {
-    // send a log
-    console.log(message);
-}
-
-module.exports.log = log;
-module.exports.mylog = log;
+module.exports.logthis = log;

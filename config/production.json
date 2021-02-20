@@ -1,0 +1,6 @@
+{
+    "name": "learning application - production", 
+    "mail": {
+        "host":"production mail server"
+    }
+}
