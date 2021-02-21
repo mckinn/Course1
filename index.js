@@ -1,6 +1,8 @@
 
-const logger = require('./logger').logthis;
-const courses = require('./courses');
+const logger = require('./middleware/logger').logthis;
+const courses = require('./routes/courses');
+const genres = require('./routes/genres');
+const homepage = require('./routes/home');
 
 const startupDebugger = require('debug')('app:startup'); // create a namespace for a collection of logs
 const databaseDebugger = require('debug')('app:database');
@@ -11,7 +13,6 @@ const Joi = require('joi');
 const helmet = require ('helmet');
 const morgan = require ('morgan');
 const app = express();
-const
 
 app.set('view engine', 'pug');
 app.set('views', './views');  //default
@@ -27,11 +28,10 @@ app.use(express.json());  // middleware function transmutes body to the target f
 app.use(helmet());
 app.use(express.static('public'));         
 app.use(logger);  // results from the custom module
-app.use('/api/courses',courses);
 
 if (app.get('env') === 'development') {
     app.use(morgan('tiny')); 
-    console.log('Morgan enabled...');
+    startupDebugger('Morgan enabled...');
  }
 
 app.use(function (req,res, next){
@@ -39,11 +39,11 @@ app.use(function (req,res, next){
     next();    // call the next event.
 });
 
+app.use('/api/courses',courses);
+app.use('/api/genres',genres);
+app.use('/',homepage);
 
-app.get('/', (req, res) => {
-    res.render('index',   // the name of the pug template file
-    { title:"my express app", message:"hello"});
-});
+
 
 
 

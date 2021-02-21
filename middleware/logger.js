@@ -4,4 +4,4 @@ function log (req, res, next){
     next();    // call the next event.
 };
 
-module.exports.logthis = log;
+module.exports.logthis = log;  // just playing by making it an element of the exported object
